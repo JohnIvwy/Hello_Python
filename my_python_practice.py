@@ -1,29 +1,25 @@
 '''This file is to practice my knowledge by Python'''
 
-# To create a Tuple
-my_tuple = ()
-tuple_two = tuple()
+# To create a Set
+my_st = set()
+st = {}
 
-my_tuple = (1,2,3,4)
-tuple_two = (5,6,7,8) 
+# Exercises from GitHub
+# sets
+it_companies = {'Facebook', 'Google', 'Microsoft', 'Apple', 'IBM', 'Oracle', 'Amazon'}
+A = {19, 22, 24, 20, 25, 26}
+B = {19, 22, 20, 25, 26, 24, 28, 27}
+age = [22, 19, 24, 25, 26, 24, 25, 24]
 
-my_tuple += tuple_two
-print(type(my_tuple))
+# Level 1
+it_companies.add('Twitter')
+print(it_companies)
+it_companies.update(['Prosol', 'Unitec', 'Aoc'])
+print(it_companies)
+it_companies.remove('Facebook')
+print(it_companies)
 
-'''Nota importante: aunque las tuplas son inmutables
-(no se pueden modificar en el sentido tradicional),
-la operación += no modifica la tupla original,
-sino que crea una nueva y reasigna el nombre my_tuple a ella.'''
-
-# Exercises on the GitHub
-name_sister = ('Diana','Ana')
-names_brothers = ('Alex','Pedro')
-siblings = names_brothers + name_sister
-print(siblings)
-parents = ('Amilcar','Johana')
-family_members = parents + siblings
-print(family_members)
-print(f'Cantidad de hermanos: {len(siblings)}')
-dad, mom, hno_mayor, hno_inter, hna_good, couple = family_members
-print(dad, mom, hna_good)
-print('Pedro' in family_members)
+# Level 3
+new_st = set(age)
+print(len(age))
+print(len(new_st))
