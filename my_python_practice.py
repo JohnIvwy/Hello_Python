@@ -1,25 +1,49 @@
 '''This file is to practice my knowledge by Python'''
 
-# To create a Set
-my_st = set()
-st = {}
+# To create a Dict
+# syntax
+dictionary = dict()
+empty_dict = {}
 
 # Exercises from GitHub
-# sets
-it_companies = {'Facebook', 'Google', 'Microsoft', 'Apple', 'IBM', 'Oracle', 'Amazon'}
-A = {19, 22, 24, 20, 25, 26}
-B = {19, 22, 20, 25, 26, 24, 28, 27}
-age = [22, 19, 24, 25, 26, 24, 25, 24]
 
-# Level 1
-it_companies.add('Twitter')
-print(it_companies)
-it_companies.update(['Prosol', 'Unitec', 'Aoc'])
-print(it_companies)
-it_companies.remove('Facebook')
-print(it_companies)
+dog = {'name':'Max', 'color':'Yellow and brown', 'legs':4,'age':'I dont know'} # Declarando dog as a Dict
 
-# Level 3
-new_st = set(age)
-print(len(age))
-print(len(new_st))
+# Declarando student as a Dict
+student = {
+    'first_name':'Andrea',
+    'last_name':'Useche',
+    'gender':'Female',
+    'age':19,
+    'status':'Engagement',
+    'skills':['Beautiful','Intelligence','Fashion'],
+    'country':'Colombia',
+    'city':'Bogota D.C',
+    'address':{
+        'street':'Calle 12 #2-32',
+        'neighborhood':'Prado'
+    }}
+
+# Accediendo al index 2 del valor de la llave 'skills'
+print(student['skills'][2])
+
+# Añadiendo 3 elementos a la lista de la llave 'skills'
+student['skills'].extend(['Sort','Intelectual','Responsable'])
+print(student['skills'])
+
+# Getting the values of dictionary as a list
+list_of_dict = list(student.values())
+print(list_of_dict)
+
+# Change the dictionary to a list of tuples using items() method
+lst_tpl_dct = list(student.items())
+print(len(lst_tpl_dct))
+print(lst_tpl_dct[5][1][2])
+
+# Deleting one element of dict
+del student['country']
+student['status'] = 'Single'
+print(student)
+
+# Dropping all the dictionary
+del dog
