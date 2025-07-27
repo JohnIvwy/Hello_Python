@@ -1,49 +1,99 @@
 '''This file is to practice my knowledge by Python'''
 
-# To create a Dict
-# syntax
-dictionary = dict()
-empty_dict = {}
+### Conditionals ###
 
-# Exercises from GitHub
+# Basic structure to built a conditional
+suma = True
+if suma: # Check if the variable is 'True'
+    print()
+elif suma != False: # Check if the variable is difference to 'True'
+    print()
+else: # This part execute if anyone of the conditionals se cumple
+    print()
 
-dog = {'name':'Max', 'color':'Yellow and brown', 'legs':4,'age':'I dont know'} # Declarando dog as a Dict
+# Exercises
 
-# Declarando student as a Dict
-student = {
-    'first_name':'Andrea',
-    'last_name':'Useche',
-    'gender':'Female',
-    'age':19,
-    'status':'Engagement',
-    'skills':['Beautiful','Intelligence','Fashion'],
-    'country':'Colombia',
-    'city':'Bogota D.C',
-    'address':{
-        'street':'Calle 12 #2-32',
-        'neighborhood':'Prado'
-    }}
+# 1
+age = int(input('Enter your age: '))
 
-# Accediendo al index 2 del valor de la llave 'skills'
-print(student['skills'][2])
+if age < 18:
+    print(f'You need {18 - age} more years to learn to drive')
+if age >= 18:
+    print('You are old enough to learn to drive')
 
-# Añadiendo 3 elementos a la lista de la llave 'skills'
-student['skills'].extend(['Sort','Intelectual','Responsable'])
-print(student['skills'])
+# 2
+my_age = 21
+your_age = int(input('Enter your age: '))
 
-# Getting the values of dictionary as a list
-list_of_dict = list(student.values())
-print(list_of_dict)
+if your_age > my_age:
+    difference = your_age - my_age
+    if difference == 1:
+        print('You are 1 year older than me')
+    else:
+        print(f'You are {difference} years older than me')
+elif your_age < my_age:
+    difference = my_age - your_age
+    if difference == 1:
+        print('You are 1 year younger than me')
+    else:
+        print(f'You are {difference} years younger than me')
+else:
+    print('We are the same age!')
 
-# Change the dictionary to a list of tuples using items() method
-lst_tpl_dct = list(student.items())
-print(len(lst_tpl_dct))
-print(lst_tpl_dct[5][1][2])
+# 3
+a = int(input('Enter nombre one: '))
+b = int(input('Enter nombre two: '))
 
-# Deleting one element of dict
-del student['country']
-student['status'] = 'Single'
-print(student)
+if a > b:
+    print(f'{a} is greater than {b}')
+else:
+    print(f'{a} is less than {b}')
 
-# Dropping all the dictionary
-del dog
+# 4
+score = int(input('Enter your score (0-100): '))
+
+if score >= 0 and score < 50:
+    print('Grade: F')
+elif score >= 50 and score < 60:
+    print('Grade: D')
+elif score >= 60 and score < 70:
+    print('Grade: C')
+elif score >= 70 and score < 90:
+    print('Grade: B')
+elif score >= 80 and score <= 100:
+    print('Grade: A')
+else:
+    print('Your score is incorrect!')
+
+# 5
+# If a fruit doesn't exist in the list add the fruit to the list and print the modified list. 
+# If the fruit exists print('That fruit already exist in the list')
+fruits = ['banana', 'orange', 'mango', 'lemon']
+new_fruit = input('Enter a fruit: ')
+
+if new_fruit in fruits:
+    print('That fruit already exist in the list')
+    print(f'List: {fruits}')
+else:
+    fruits.append(new_fruit)
+    print(f'List modify: {fruits}')
+
+# 6
+person={
+    'first_name': 'Asabeneh',
+    'last_name': 'Yetayeh',
+    'age': 250,
+    'country': 'Finland',
+    'is_marred': True,
+    'skills': ['JavaScript', 'React', 'Node', 'MongoDB', 'Python'],
+    'address': {
+        'street': 'Space street',
+        'zipcode': '02210'
+        }
+    }
+
+if 'skills' in person:
+    print(person['skills'][int(len(person['skills'])/2)])
+    
+if 'Python' in person['skills']:
+    print('Yeah')
