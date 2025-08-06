@@ -14,3 +14,9 @@ print(rg)
 # Example:
 for number in range(6):
     pass
+
+# -------------- [::-1] --------------
+# Esta expresión nos permite revertir los elementos de una lista
+lst = ['primero','segundo','tercero','cuarto']
+lst = lst[::-1]
+print(lst) # salida: ['cuarto', 'tercero', 'segundo', 'primero']

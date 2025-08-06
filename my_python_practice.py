@@ -1,110 +1,98 @@
 '''This file is to practice my knowledge by Python'''
 
-### Loops ###
+### Functions ###
+def name_function():
+    print('Code of function')
 
-# While
-'''a = 0
-while a < 10:
-    print('While condition is True, the loop execute again')
-    a += 1
-    print(a)
-    if a == 7:
-        print('To stop the loop use Break')
-        break # El 'Break' rompe el bucle y se deja de ejecutar
-else: # Es opcional
-    print('else -> Se ejecuta cuando termina el bucle')
+name_function() # there we call the function
 
 
+# Function with parameters and return
 
-# For
-# Para iterar un listado de elementos
-for i in range(10):
-    print(i)
-    if i == 6:
-        print('To stop the loop use Break')
-        break # El 'Break' rompe el bucle y se deja de ejecutar
-else: # Es opcional
-    print('else -> Se ejecuta cuando termina el bucle')
+def sum_two_values(first_value, second_value):
+    sum = first_value + second_value
+    return(sum) # we can return a value with the function
 
-language = 'Python'
-for i in range(len(language)):
-    print(language[i])
+result = sum_two_values(3,5)
+print(f'"return" of function is {result}')
 
-person = {
-    'first_name':'Asabeneh',
-    'last_name':'Yetayeh',
-    'age':250,
-    'country':'Finland',
-    'is_marred':True,
-    'skills':['JavaScript', 'React', 'Node', 'MongoDB', 'Python'],
-    'address':{
-        'street':'Space street',
-        'zipcode':'02210'
-    }
-}
-for key, value in person.items():
-    print(key, value) # this way we get both keys and values printed out
+# We can specify the sort of items
 
-for key in person:
-    if key == 'skills':
-        for skill in person['skills']:
-            print(skill)'''
+result_2 = sum_two_values(second_value=2, first_value=4)
+print(result_2)
 
-# Exercises
 
-# 1-) Iterate 10 to 0 using for loop, do the same using while loop.
-i = 10
-while i >= 0:
-    print(i)
-    i -= 1
-else:
-    print('End while')
+# We can put a value by default to the function
 
-rg = list(range(11))
-rg.reverse()
-for x in rg:
-    print(x)
-else:
-    print('End for')
+def fun_default(name='N/N', nickname='Sin nickname'):
+    print(f'User: {name}, {nickname}')
+
+fun_default() # Don´t put the parameter
+
+# RETURN
+def is_even (n):
+    if n % 2 == 0:
+        print('even')
+        return True    # return stops further execution of the function, similar to break 
+    return False
+print(is_even(10)) # True
+print(is_even(7)) # False
+
+
+
+# ---------------------------------------
+# -------------- Exercises --------------
+# ---------------------------------------
+# 1-) 
+def convert_celsius_to_fahrenheit(celsius):
+    fahrenheit = (celsius * (9/5)) + 32
+    return fahrenheit
+
+grados = convert_celsius_to_fahrenheit(3)
+print(f'3 °C corresponde a {grados} Fahrenheit')
 
 # 2-)
-for i in range(1,8):
-    p = '#'
-    print(p*i)
+def check_season(month):
+    if month == 'January':
+        print('Autumn')
+    elif month == 'February':
+        print('Winter')
+    elif month == 'March':
+        print('Spring')
+    else:
+        print('Summer')
+
+check_season('March')
 
 # 3-)
-for f in range(8):
-    a = '# '
-    print(a*8)
+def print_list(els):
+    for el in els:
+        print(el)
 
-for f in range(8):
-    n = '# '
-    for c in range(8):
-        print(n,end='')
-    print('')
+lst = [12,'Hola',12.23,True]
+print_list(lst)
 
-# 4-) 
-for i in range(11):
-    print(f'{i} x {i} = {i*i}')
+# 4-)
+def reverse_list(lst):
+    return lst[::-1]
+
+print(reverse_list([1,2,3,4,5,6]))
 
 # 5-)
-suma = 0
-for i in range(1,101,2):
-    suma += i
-print(suma)
+def capitalize_list_items(lista):
+    lst = []
+    for item in lista:
+        lst.append(item.capitalize())
+    return lst
+lista = ['john','andrea','marco','thony']
+print(capitalize_list_items(lista))
 
-# 6-) Invierte el orden de la lista usando un bucle.
-# Lista original
-frutas = ['banana', 'naranja', 'mango', 'limón']
+# 6-)
+def remove_item(lst,item):
+    if item in lst:
+        lst.remove(item)
+        return lst
+    else:
+        return 'The item is not in the list'
 
-# Usamos un bucle para invertir la lista manualmente
-frutas_invertidas = []
-
-for i in range(len(frutas) - 1, -1, -1):
-    frutas_invertidas.append(frutas[i])
-
-# Sobrescribimos la lista original
-frutas = frutas_invertidas
-
-# Mostramos el resultado
-print("Lista invertida:", frutas)
+print(remove_item([35, 1.77, "Brais", "Moure"], 'Bras'))
