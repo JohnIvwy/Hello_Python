@@ -1,98 +1,58 @@
 '''This file is to practice my knowledge by Python'''
 
-### Functions ###
-def name_function():
-    print('Code of function')
+### Classes ###
+# Meaning: 
 
-name_function() # there we call the function
+# To declarare:
+class Person: # nombres de clases en Camelcase UnEjemploEsEste
+    # __init__ constructor de la clase, permite dar valores al objeto al crearlo
+    # 'self' le asigna esos valores al objeto creado y permite acceder a ellos dentro de la clase
+    def __init__(self, name, age, height, gender): 
+        # atributos aquí abajo y se pasan por parámetros
+        self.name = name
+        self.age = age
+        self.height = height
+        self.gender = gender
 
+    # definimos sus métodos
+    def greeting(self):
+        print(f'¡Hola {self.name}!')
+    
+    def get_age(self):
+        return self.age
+    
+    def prt_full_name(self):
+        self.name = 'Raton'
+        self.age = 32
+    
+    def prt_attributes(self):
+        print(f'Name: {self.name}')
+        print(f'Age: {self.age}')
+        print(f'Height: {self.height}')
+        print(f'Gender: {self.gender}')
+    
+# Instanciamos el objeto (lo creamos)
+john = Person('John', 21, 1.70, 'Male')
 
-# Function with parameters and return
+# Accedemos a sus atributos y métodos si son públicos
+john.greeting()
+print(john.get_age())
 
-def sum_two_values(first_value, second_value):
-    sum = first_value + second_value
-    return(sum) # we can return a value with the function
+# Child class
+class Stutdent(Person):
+    def __init__(self, name, age, height, gender):
+        super().__init__(name, age, height, gender)
+    
+    def prt_full_name(self):
+        super().prt_full_name()
+        self.age = 64
 
-result = sum_two_values(3,5)
-print(f'"return" of function is {result}')
-
-# We can specify the sort of items
-
-result_2 = sum_two_values(second_value=2, first_value=4)
-print(result_2)
-
-
-# We can put a value by default to the function
-
-def fun_default(name='N/N', nickname='Sin nickname'):
-    print(f'User: {name}, {nickname}')
-
-fun_default() # Don´t put the parameter
-
-# RETURN
-def is_even (n):
-    if n % 2 == 0:
-        print('even')
-        return True    # return stops further execution of the function, similar to break 
-    return False
-print(is_even(10)) # True
-print(is_even(7)) # False
-
-
+pedro = Stutdent('pedro', 12, 1.32, 'Male')
+pedro.prt_full_name()
+pedro.prt_attributes()
 
 # ---------------------------------------
 # -------------- Exercises --------------
 # ---------------------------------------
 # 1-) 
-def convert_celsius_to_fahrenheit(celsius):
-    fahrenheit = (celsius * (9/5)) + 32
-    return fahrenheit
 
-grados = convert_celsius_to_fahrenheit(3)
-print(f'3 °C corresponde a {grados} Fahrenheit')
-
-# 2-)
-def check_season(month):
-    if month == 'January':
-        print('Autumn')
-    elif month == 'February':
-        print('Winter')
-    elif month == 'March':
-        print('Spring')
-    else:
-        print('Summer')
-
-check_season('March')
-
-# 3-)
-def print_list(els):
-    for el in els:
-        print(el)
-
-lst = [12,'Hola',12.23,True]
-print_list(lst)
-
-# 4-)
-def reverse_list(lst):
-    return lst[::-1]
-
-print(reverse_list([1,2,3,4,5,6]))
-
-# 5-)
-def capitalize_list_items(lista):
-    lst = []
-    for item in lista:
-        lst.append(item.capitalize())
-    return lst
-lista = ['john','andrea','marco','thony']
-print(capitalize_list_items(lista))
-
-# 6-)
-def remove_item(lst,item):
-    if item in lst:
-        lst.remove(item)
-        return lst
-    else:
-        return 'The item is not in the list'
-
-print(remove_item([35, 1.77, "Brais", "Moure"], 'Bras'))
