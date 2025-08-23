@@ -56,3 +56,13 @@ lst_one = [1, 2, 3]
 lst_two = [4, 5, 6, 7]
 lst = [0, *lst_one, *lst_two]
 print(lst)  # [0, 1, 2, 3, 4, 5, 6, 7]
+
+# -------------- JOIN --------------
+# Une una secuencia de strings en un solo string.
+# Colocando entre ellos el separador que le indiquemos. 
+# 'separador'.join(iterable)
+
+palabras = ["Hola", "mundo", "Python"]
+resultado = " ".join(palabras)
+print(resultado)  
+# "Hola mundo Python"
