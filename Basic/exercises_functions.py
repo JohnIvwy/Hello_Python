@@ -28,6 +28,18 @@ def inverted_chain(chain):
 
 print(inverted_chain('Experimetado'))
 
+# The correct way to solve it
+def revers_text(text):
+    
+    len_text = len(text)
+    text_reversed = ''
+    
+    for i in range(len_text):
+        text_reversed += text[len_text - i - 1]
+        return text_reversed
+
+print(revers_text('Hola mundo'))
+
 # Función que verifique si un número es primo.
 # Intente realizar la función pero no funciono
 """def is_prime(number):
@@ -61,6 +73,20 @@ def es_primo(numero):
 print(es_primo(2))   # True
 print(es_primo(17))  # True
 print(es_primo(20))  # False
+
+# Solución MoureDev
+def is_prime(number):
+    
+    if number <= 1:
+        return False
+
+    for i in range(2, number):
+        if number % i == 0:
+            return False
+        
+    return True
+
+print(is_prime(7))
 
 # Función que cuente palabras en una frase.
 def count_words(frase):
