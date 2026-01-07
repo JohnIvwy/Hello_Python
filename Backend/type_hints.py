@@ -8,3 +8,5 @@
 
 # Definimos el tipo después del nombre de la variable
 mi_string: str = "Esta es una cadena"
+mi_number: int = 22
+mi_bool: bool = True
