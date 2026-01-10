@@ -1,17 +1,28 @@
 # Tenemos que importar el framework FastAPI
 
+# FastAPI es una clase de Python que proporciona toda la funcionalidad para la API.
 from fastapi import FastAPI
 
-# Creamos una instancia de FastAPI
+# Creamos una instancia u objeto de FastAPI
 app = FastAPI()
 
-# Declaramos una función a nuestra API
-# la declaramos asíncrona con 'async' para que la función se ejecute en segundo plano
-# que la app funcione aunque el servidor no me halla respondido una llamada a una función.
+# Declaramos Path Operation Function a nuestra API
 
-@app.get('/') # Petición get a nuestro servidor
+# la declaramos asíncrona con 'async' para que la función se ejecute en segundo plano
+# y que nuestra web funcione aunque todavía no halla recibido la respuesta que solicitó.
+# Petición get a nuestro servidor. Entre parentesis colocamos el Path ("endpoint" o "ruta")
+
+# El decorador @app.get("/") le dice a FastAPI que la función justo debajo se encarga de 
+# manejar requests que vayan a el path / usando un método u operación get
+
+@app.get('/') 
 async def root():
     return '¡Hola FastAPI!'
+
+# Así hemos declarado nuestra Path Operation Function
+# path: es /. 
+# operation: es get. 
+# function: es la función debajo del "decorador" (debajo de @app.get("/")).
 
 
 @app.get('/url')
@@ -26,7 +37,7 @@ async def url():
 
 # Postman un cliente para poder ejecutar peticiones a una API, para poder interactuar con Backend (API)
 
-# Peticiones HTTP a una API:
+# Peticiones o métodos HTTP a una API:
 
 # GET: leer datos
 # POST: crear datos
