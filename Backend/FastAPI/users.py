@@ -2,7 +2,7 @@
 # Creando un API (CRUD) para usuarios
 # -------------------------------------------------------------------------------------------------
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 
 # Creación de instancia
 app = FastAPI()
@@ -62,6 +62,9 @@ def search_user(id: int):
 # Parámetros requeridos: ya sea por path o por query.
 # Parámetros con un valor por defecto: definimos su valor con el =
 # Parámetros enteramente opcionales: cuando los definimos con | None = None
+#   str | None significa que la variable es de tipo str pero también podría ser None, 
+#   = None significa que definimos el valor por defecto None, 
+#   así que FastAPI sabrá que no es requerido.
 
 @app.get("/items/{item_id}")
 async def read_user_item(
@@ -77,14 +80,23 @@ async def read_user_item(
 # -------------------------------------------------------------------------------------------------
 
 # Método POST
+# Un request body es un dato enviado por el cliente a tu API. 
+# Un response body es el dato que tu API envía al cliente.
 
-@app.post('/user/')
+@app.post('/user/', response_model=User, status_code=201)
 async def user(user: User):
     if type(search_user(user.id)) == User:
-        return {'error': 'El usuario ya existe'}
+        raise HTTPException(status_code=404, detail='El usuario ya existe')
     
     users_ls.append(user)
     return user
+
+# Códigos de estado HTTP: 
+# Informational responses (100 – 199)
+# Successful responses (200 – 299)
+# Redirection messages (300 – 399)
+# Client error responses (400 – 499)
+# Server error responses (500 – 599)
 
 
 # -------------------------------------------------------------------------------------------------
