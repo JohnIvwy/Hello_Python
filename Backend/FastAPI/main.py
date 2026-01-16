@@ -3,14 +3,23 @@
 # FastAPI es una clase de Python que proporciona toda la funcionalidad para la API.
 from fastapi import FastAPI
 
+# Para poder conectar toda nuestra API utilizamos Routers, así que desde la carpeta 
+# routers importamos nuestros módulos
+from routers import products, users
+
 # Creamos una instancia u objeto de FastAPI
 app = FastAPI()
+
+# Incluimos en nuestra API principal las otras APIs que tenemos, colocamos el nombre
+# del archivo y luego el nombre del API que creamos
+app.include_router(products.router)
+app.include_router(users.router)
 
 # Declaramos Path Operation Function a nuestra API
 
 # la declaramos asíncrona con 'async' para que la función se ejecute en segundo plano
 # y que nuestra web funcione aunque todavía no halla recibido la respuesta que solicitó.
-# Petición get a nuestro servidor. Entre parentesis colocamos el Path ("endpoint" o "ruta")
+# Petición get a nuestro servidor. Entre paréntesis colocamos el Path ("endpoint" o "ruta")
 
 # El decorador @app.get("/") le dice a FastAPI que la función justo debajo se encarga de 
 # manejar requests que vayan a el path / usando un método u operación get

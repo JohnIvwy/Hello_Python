@@ -2,10 +2,12 @@
 # Creando un API (CRUD) para usuarios
 # -------------------------------------------------------------------------------------------------
 
-from fastapi import FastAPI, HTTPException
+from fastapi import APIRouter, HTTPException
 
 # Creación de instancia
-app = FastAPI()
+router = APIRouter(prefix='/users',
+                   tags=['users'],
+                   responses={404: {'message':'No encontrado'}})
 
 # -------------------------------------------------------------------------------------------------
 
@@ -32,19 +34,19 @@ users_ls = [User(id=1, name='John', surname='Leon', age=22),
 
 
 # Petición al servidor
-@app.get('/users')
+@router.get('/')
 async def users():
     return users_ls
 
 
 # Petición al servidor por PATH con el id del usuario (url: /user/1/john...)
-@app.get('/user/{id}')
+@router.get('/{id}')
 async def user(id: int):
     return search_user(id)
 
 
 # Petición al servidor por QUERY (url: /user/?id=1&name=john...)
-@app.get('/user/')
+@router.get('/')
 async def user(id: int):
     return search_user(id)
 
@@ -66,7 +68,7 @@ def search_user(id: int):
 #   = None significa que definimos el valor por defecto None, 
 #   así que FastAPI sabrá que no es requerido.
 
-@app.get("/items/{item_id}")
+@router.get("/items/{item_id}")
 async def read_user_item(
     item_id: str, 
     needy: str, 
@@ -83,7 +85,7 @@ async def read_user_item(
 # Un request body es un dato enviado por el cliente a tu API. 
 # Un response body es el dato que tu API envía al cliente.
 
-@app.post('/user/', response_model=User, status_code=201)
+@router.post('/', response_model=User, status_code=201)
 async def user(user: User):
     if type(search_user(user.id)) == User:
         raise HTTPException(status_code=404, detail='El usuario ya existe')
@@ -103,7 +105,7 @@ async def user(user: User):
 
 # Método PUT (update)
 
-@app.put('/user/')
+@router.put('/')
 async def user(user: User):
 
     found = False
@@ -123,7 +125,7 @@ async def user(user: User):
 
 # Método DELETE
 
-@app.delete('/user/{id}')
+@router.delete('/{id}')
 async def user(id:int):
 
     delete = False
