@@ -7,6 +7,9 @@ from fastapi import FastAPI
 # routers importamos nuestros módulos
 from routers import products, users
 
+# Para exponer recursos estáticos (imágenes, documentos, pdf...)
+from fastapi.staticfiles import StaticFiles
+
 # Creamos una instancia u objeto de FastAPI
 app = FastAPI()
 
@@ -14,6 +17,9 @@ app = FastAPI()
 # del archivo y luego el nombre del API que creamos
 app.include_router(products.router)
 app.include_router(users.router)
+
+# Dentro de la instancia tenemos la función para montar recursos estáticos
+app.mount('/static',StaticFiles(directory='static'), name='static')
 
 # Declaramos Path Operation Function a nuestra API
 
