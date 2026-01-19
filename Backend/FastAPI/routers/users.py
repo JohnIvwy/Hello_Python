@@ -33,7 +33,7 @@ users_ls = [User(id=1, name='John', surname='Leon', age=22),
             ]
 
 
-# Petición al servidor
+# Petición al servidor GET (read)
 @router.get('/')
 async def users():
     return users_ls
@@ -81,13 +81,14 @@ async def read_user_item(
 
 # -------------------------------------------------------------------------------------------------
 
-# Método POST
+# Método POST (create)
 # Un request body es un dato enviado por el cliente a tu API. 
 # Un response body es el dato que tu API envía al cliente.
 
 @router.post('/', response_model=User, status_code=201)
 async def user(user: User):
     if type(search_user(user.id)) == User:
+        # raise detiene la ejecución de la función y manda una excepción de error (404 por ejemplo)
         raise HTTPException(status_code=404, detail='El usuario ya existe')
     
     users_ls.append(user)
