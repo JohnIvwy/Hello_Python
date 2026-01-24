@@ -5,7 +5,7 @@ from fastapi import FastAPI
 
 # Para poder conectar toda nuestra API utilizamos Routers, así que desde la carpeta 
 # routers importamos nuestros módulos
-from routers import products, users, jwt_auth_users
+from routers import products, users, basic_auth_users, jwt_auth_users, users_db
 
 # Para exponer recursos estáticos (imágenes, documentos, pdf...)
 from fastapi.staticfiles import StaticFiles
@@ -17,7 +17,9 @@ app = FastAPI()
 # del archivo y luego el nombre del API que creamos
 app.include_router(products.router)
 app.include_router(users.router)
+app.include_router(basic_auth_users.router)
 app.include_router(jwt_auth_users.router)
+app.include_router(users_db.router)
 
 # Dentro de la instancia tenemos la función para montar recursos estáticos
 app.mount('/static',StaticFiles(directory='static'), name='static')
