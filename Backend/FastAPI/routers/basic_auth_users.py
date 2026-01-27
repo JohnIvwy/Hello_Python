@@ -4,7 +4,9 @@ from pydantic import BaseModel
 # OAuth2PasswordRequestForm para obtener el usuario y contraseña de un formulario
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
-router = APIRouter()
+router = APIRouter(prefix='/basicauth',
+                   tags=['basicauth'],
+                   responses={status.HTTP_404_NOT_FOUND: {'message':'No encontrado'}})
 
 # Instancia de nuestro sistema de autenticación OAuth2
 oauth2 = OAuth2PasswordBearer(tokenUrl='login')
