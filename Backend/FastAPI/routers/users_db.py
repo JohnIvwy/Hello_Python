@@ -27,7 +27,7 @@ router = APIRouter(prefix='/userdb',
 # Función para buscar usuario por id
 def search_user(field: str, key):
     try:
-        user = db_client.local.users.find_one({field: key})
+        user = db_client.users.find_one({field: key})
         return User(**user_schema(user))
     except:
         return {'error':'No se encontró ningún usuario'}
@@ -38,7 +38,7 @@ def search_user(field: str, key):
 # Petición al servidor GET (read)
 @router.get('/', response_model=list[User])
 async def users():
-    return users_schema(db_client.local.users.find())
+    return users_schema(db_client.users.find())
 
 
 # Petición al servidor por PATH con el id del usuario (url: /user/1/john...)
@@ -64,9 +64,9 @@ async def user(user: User):
     user_dict = dict(user)
     del user_dict['id']
 
-    id = db_client.local.users.insert_one(user_dict).inserted_id
+    id = db_client.users.insert_one(user_dict).inserted_id
 
-    new_user = user_schema(db_client.local.users.find_one({'_id':id}))
+    new_user = user_schema(db_client.users.find_one({'_id':id}))
 
     return User(**new_user)
 
@@ -79,7 +79,7 @@ async def user(user: User):
     user_dict = dict(user)
     del user_dict['id']
     try:
-        db_client.local.users.find_one_and_replace({'_id': ObjectId(user.id)}, user_dict)
+        db_client.users.find_one_and_replace({'_id': ObjectId(user.id)}, user_dict)
     except:
         return {'error': 'No se ha actualizado el usuario'}
     
@@ -93,7 +93,7 @@ async def user(user: User):
 @router.delete('/{id}', status_code=status.HTTP_204_NO_CONTENT)
 async def user(id: str):
 
-    delete = db_client.local.users.find_one_and_delete({'_id': ObjectId(id)})
+    delete = db_client.users.find_one_and_delete({'_id': ObjectId(id)})
 
     if not delete:
         {'error':'No se ha eliminado'}
