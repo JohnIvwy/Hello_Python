@@ -11,77 +11,80 @@
 # Abierto a extensión / cerrado a modificación
 # Poder añadir nuevas funcionalidades sin tener que modificar nuestro código existente 
 
+'''EXTRA'''
+
 '''
 EJERCICIO:
-    Explora el "Principio SOLID de Sustitución de Liskov (Liskov Substitution Principle, LSP)"
+    Explora el "Principio SOLID Abierto-Cerrado (Open-Close Principle, OCP)"
     y crea un ejemplo simple donde se muestre su funcionamiento
     de forma correcta e incorrecta.
 
 DIFICULTAD EXTRA (opcional):
-    Crea una jerarquía de vehículos. Todos ellos deben poder acelerar y frenar, así como
-    cumplir el LSP.
+    Desarrolla una calculadora que necesita realizar diversas operaciones matemáticas.
+Requisitos:
+    - Debes diseñar un sistema que permita agregar nuevas operaciones utilizando el OCP.
 Instrucciones:
-    1. Crea la clase Vehículo.
-    2. Añade tres subclases de Vehículo.
-    3. Implementa las operaciones "acelerar" y "frenar" como corresponda.
-    4. Desarrolla un código que compruebe que se cumple el LSP.
+    1. Implementa las operaciones de suma, resta, multiplicación y división.
+    2. Comprueba que el sistema funciona.
+    3. Agrega una quinta operación para calcular potencias.
+    4. Comprueba que se cumple el OCP.
 '''
 
-class Vehicle:
+from abc import ABC, abstractmethod
 
-    def __init__(self, speed=0):
-        self.speed = speed
-
-    def accelerate(self, increment):
-        self.speed += increment
-        print(f"Velocidad: {self.speed} Km/h")
-
-    def brake(self, decrement):
-        self.speed -= decrement
-        if self.speed <= 0:
-            self.speed = 0
-        print(f"Velocidad: {self.speed} Km/h")
+class Operation(ABC):
+    @abstractmethod
+    def execute(self, a, b):
+        pass
 
 
-class Car(Vehicle):
-    def accelerate(self, increment):
-        print("El coche está acelerando")
-        super().accelerate(increment)
-
-    def brake(self, decrement):
-        print("El coche está frenando")
-        super().brake(decrement)
+class Addition(Operation):
+    def execute(self, a, b):
+        return a + b
 
 
-class Bicycle(Vehicle):
-    def accelerate(self, increment):
-        print("La bicicleta está acelerando")
-        super().accelerate(increment)
-
-    def brake(self, decrement):
-        print("La bicicleta está frenando")
-        super().brake(decrement)
+class Substration(Operation):
+    def execute(self, a, b):
+        return a - b
 
 
-class Motorcycle(Vehicle):
-    def accelerate(self, increment):
-        print("La moto está acelerando")
-        super().accelerate(increment)
-
-    def brake(self, decrement):
-        print("La moto está frenando")
-        super().brake(decrement)
+class Multiplication(Operation):
+    def execute(self, a, b):
+        return a * b
 
 
-def test_vehicle(vehicle):
-    vehicle.accelerate(2)
-    vehicle.brake(1)
+class Division(Operation):
+    def execute(self, a, b):
+        return a / b
 
 
-car = Car()
-bicycle = Bicycle()
-motorcycle = Motorcycle()
+class Power(Operation):
+    def execute(self, a, b):
+        return a ** b
 
-test_vehicle(car)
-test_vehicle(bicycle)
-test_vehicle(motorcycle)
+
+class Calculator:
+    def __init__(self) -> None:
+        self.operations = {}
+
+    def add_operation(self, name, operation):
+        self.operations[name] = operation
+
+    def calculate(self, name, a, b):
+        if name not in self.operations:
+            raise ValueError(f"La operación {name} no está soportada.")
+        return self.operations[name].execute(a, b)
+
+
+calculator = Calculator()
+calculator.add_operation("addition", Addition())
+calculator.add_operation("substration", Substration())
+calculator.add_operation("multiplication", Multiplication())
+calculator.add_operation("division", Division())
+calculator.add_operation("power", Power())
+
+print(calculator.calculate("addition", 10, 5))
+print(calculator.calculate("substration", 10, 5))
+print(calculator.calculate("multiplication", 10, 5))
+print(calculator.calculate("division", 10, 5))
+print(calculator.calculate("power", 10, 5))
