@@ -4,7 +4,6 @@
 
 # Son 5 principios que nos ayudan a crear código más limpio, mantenible y fácil de escalar.
 
-
 # -----------------------------------------------------------------------------------------------------
 
 # Principio #1: S - Single Responsibility Principle (SPR - Principios de Responsabilidad Única)
@@ -31,9 +30,10 @@ class EmailService:
 
 ''' EXTRA '''
 '''
-Desarrolla un sistema de gestión para una biblioteca. El sistema necesita
-manejar diferentes aspectos como el registro de libros, la gestión de usuarios
-y el procesamiento de préstamos de libros.
+EJERCICIO:
+    Desarrolla un sistema de gestión para una biblioteca. El sistema necesita
+    manejar diferentes aspectos como el registro de libros, la gestión de usuarios
+    y el procesamiento de préstamos de libros.
 
 Requisitos:
     1. Registrar libros: El sistema debe permitir agregar nuevos libros con
@@ -118,32 +118,3 @@ class Library:
         if user and book:
             return self.loans_service.return_book(user, book)
         return False
-
-
-
-# -----------------------------------------------------------------------------------------------------
-
-# Principio #2: O - Open / Closed Principle (OCP)
-
-# Abierto a extensión / cerrado a modificación
-
-
-# -----------------------------------------------------------------------------------------------------
-
-# Principio #3: L - Liskov Substitution Principle (LSP)
-
-# Las subclases deben poder reemplazar a la clase padre sin romper nada
-
-
-# -----------------------------------------------------------------------------------------------------
-
-# Principio #4: I - Interface Segregation Principle (ISP)
-
-# Nadie debería depender de métodos que no usa
-
-
-# -----------------------------------------------------------------------------------------------------
-
-# Principio #5: D - Dependency Inversion Principle (DIP)
-
-# Depende de abstracciones, no de clases concretas
